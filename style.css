@@ -480,53 +480,126 @@ h1 {
    EYE GLOW
 ------------------------- */
 
-.eye-glow {
+/* =========================
+   SHARINGAN
+========================= */
 
+.sharingan {
     position: absolute;
 
-    width: 80px;
-
-    height: 80px;
-
-    background: rgba(255, 0, 40, 0.5);
-
-    filter: blur(25px);
+    width: 62px;
+    height: 62px;
 
     border-radius: 50%;
 
-    z-index: 3;
+    background:
+        radial-gradient(
+            circle at center,
+            #050000 0 12%,
+            #b00020 13% 25%,
+            #ff173f 26% 58%,
+            #45000d 59% 100%
+        );
 
-    animation: eyePulse 2s infinite alternate;
+    border: 2px solid rgba(255, 50, 70, 0.9);
+
+    box-shadow:
+        0 0 10px #ff173f,
+        0 0 25px rgba(255, 0, 40, 0.8),
+        0 0 60px rgba(255, 0, 40, 0.5);
+
+    z-index: 8;
+
+    animation: sharinganPulse 2s infinite alternate;
 }
 
 
+/* Eye positions */
+
 .left-eye {
-
     top: 42%;
-
     left: 43%;
 }
 
-
 .right-eye {
-
     top: 42%;
-
     left: 57%;
 }
 
 
-@keyframes eyePulse {
+/* Black center */
+
+.sharingan::after {
+    content: "";
+
+    position: absolute;
+
+    width: 13px;
+    height: 13px;
+
+    background: #050000;
+
+    border-radius: 50%;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    box-shadow:
+        0 0 8px #000;
+}
+
+
+/* Tomoe */
+
+.tomoe {
+
+    position: absolute;
+
+    width: 13px;
+    height: 13px;
+
+    border: 4px solid #050000;
+
+    border-radius: 50%;
+
+    z-index: 2;
+}
+
+
+/* Tomoe positions */
+
+.t1 {
+    top: 7px;
+    left: 24px;
+}
+
+.t2 {
+    bottom: 9px;
+    left: 7px;
+}
+
+.t3 {
+    bottom: 9px;
+    right: 7px;
+}
+
+
+/* Pulse */
+
+@keyframes sharinganPulse {
 
     from {
-        opacity: 0.2;
+        transform: scale(0.95);
+        opacity: 0.7;
     }
 
     to {
-        opacity: 0.8;
+        transform: scale(1.08);
+        opacity: 1;
     }
 }
-
 
 /* -------------------------
    LARGE JAPANESE TEXT
