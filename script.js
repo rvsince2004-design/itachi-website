@@ -98,3 +98,59 @@ document.addEventListener("mousemove", (event) => {
         `translate(${x}px, ${y}px)`;
 
 });
+
+/* =========================
+   ITACHI SCENE SWITCHER
+========================= */
+
+const itachiImage =
+    document.getElementById("itachiImage");
+
+const sceneButtons =
+    document.querySelectorAll(".scene-btn");
+
+
+sceneButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        const newImage =
+            button.getAttribute("data-image");
+
+
+        /* Fade image out */
+
+        itachiImage.style.opacity = "0";
+
+        itachiImage.style.transform =
+            "scale(1.08)";
+
+
+        setTimeout(() => {
+
+            itachiImage.src = newImage;
+
+            itachiImage.onload = () => {
+
+                itachiImage.style.opacity = "1";
+
+                itachiImage.style.transform =
+                    "scale(1)";
+            };
+
+        }, 350);
+
+
+        /* Change active button */
+
+        sceneButtons.forEach((btn) => {
+
+            btn.classList.remove("active");
+
+        });
+
+        button.classList.add("active");
+
+    });
+
+});
