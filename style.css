@@ -1,0 +1,770 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #05030a;
+    color: #fff;
+    font-family: "Noto Sans JP", sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* -------------------------
+   BACKGROUND
+------------------------- */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 65% 45%,
+            rgba(150, 0, 35, 0.25),
+            transparent 30%
+        ),
+        linear-gradient(
+            120deg,
+            #05030a,
+            #0c0712 50%,
+            #020205
+        );
+
+    z-index: -5;
+}
+
+
+.red-glow {
+    position: fixed;
+
+    width: 450px;
+    height: 450px;
+
+    right: 5%;
+    top: 25%;
+
+    background: rgba(255, 0, 50, 0.08);
+
+    filter: blur(100px);
+
+    border-radius: 50%;
+
+    z-index: -4;
+
+    animation: glow 5s infinite alternate;
+}
+
+
+@keyframes glow {
+
+    from {
+        opacity: 0.3;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+}
+
+
+/* -------------------------
+   NAVBAR
+------------------------- */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 90px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    z-index: 100;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(5,3,10,0.85),
+        transparent
+    );
+
+    backdrop-filter: blur(4px);
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    font-weight: 700;
+}
+
+
+.logo-dot {
+
+    width: 7px;
+    height: 7px;
+
+    background: #ff1744;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 10px #ff1744;
+}
+
+
+.logo small {
+
+    position: absolute;
+
+    margin-top: 32px;
+
+    margin-left: 15px;
+
+    font-size: 6px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.45;
+}
+
+
+nav {
+
+    display: flex;
+
+    gap: 35px;
+}
+
+
+nav a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    opacity: 0.65;
+
+    transition: 0.3s;
+}
+
+
+nav a:hover {
+
+    color: #ff2148;
+
+    opacity: 1;
+}
+
+
+.sound-btn {
+
+    background: transparent;
+
+    border: none;
+
+    color: white;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.6;
+
+    cursor: pointer;
+}
+
+
+/* -------------------------
+   SIDE COUNTER
+------------------------- */
+
+.side-counter {
+
+    position: fixed;
+
+    left: 25px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    z-index: 10;
+}
+
+
+.side-counter span {
+
+    font-size: 7px;
+
+    opacity: 0.35;
+
+    letter-spacing: 2px;
+}
+
+
+/* -------------------------
+   HERO
+------------------------- */
+
+.hero {
+
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 100px 8% 50px;
+
+    overflow: hidden;
+}
+
+
+.hero-content {
+
+    width: 43%;
+
+    position: relative;
+
+    z-index: 5;
+
+    animation: appear 1.5s ease;
+}
+
+
+@keyframes appear {
+
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+.eyebrow {
+
+    color: #ff1744;
+
+    font-size: 8px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 20px;
+}
+
+
+h1 {
+
+    font-family: "Noto Sans JP", sans-serif;
+
+    font-size: clamp(42px, 5vw, 75px);
+
+    line-height: 1.1;
+
+    font-weight: 700;
+
+    margin-bottom: 25px;
+}
+
+
+.description {
+
+    max-width: 430px;
+
+    font-size: 10px;
+
+    line-height: 2;
+
+    color: #aaa5ae;
+
+    margin-bottom: 30px;
+}
+
+
+/* -------------------------
+   INFO
+------------------------- */
+
+.info-grid {
+
+    display: flex;
+
+    gap: 25px;
+
+    margin-bottom: 30px;
+}
+
+
+.info-grid div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.info-grid span {
+
+    font-size: 7px;
+
+    color: #777;
+
+    letter-spacing: 2px;
+}
+
+
+.info-grid strong {
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+}
+
+
+.quote {
+
+    font-size: 9px;
+
+    color: #aaa;
+
+    letter-spacing: 1px;
+}
+
+
+/* -------------------------
+   IMAGE
+------------------------- */
+
+.hero-image {
+
+    position: absolute;
+
+    width: 65%;
+
+    height: 85%;
+
+    right: -5%;
+
+    top: 10%;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+
+.hero-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    filter:
+        brightness(0.65)
+        contrast(1.15)
+        saturate(0.8);
+
+    animation: imageIn 2s ease;
+}
+
+
+@keyframes imageIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(1.1);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+    }
+}
+
+
+/* dark gradient over image */
+
+.image-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #05030a 0%,
+            transparent 45%
+        ),
+
+        linear-gradient(
+            0deg,
+            #05030a 0%,
+            transparent 35%
+        );
+}
+
+
+/* -------------------------
+   EYE GLOW
+------------------------- */
+
+.eye-glow {
+
+    position: absolute;
+
+    width: 80px;
+
+    height: 80px;
+
+    background: rgba(255, 0, 40, 0.5);
+
+    filter: blur(25px);
+
+    border-radius: 50%;
+
+    z-index: 3;
+
+    animation: eyePulse 2s infinite alternate;
+}
+
+
+.left-eye {
+
+    top: 42%;
+
+    left: 43%;
+}
+
+
+.right-eye {
+
+    top: 42%;
+
+    left: 57%;
+}
+
+
+@keyframes eyePulse {
+
+    from {
+        opacity: 0.2;
+    }
+
+    to {
+        opacity: 0.8;
+    }
+}
+
+
+/* -------------------------
+   LARGE JAPANESE TEXT
+------------------------- */
+
+.large-kanji {
+
+    position: absolute;
+
+    right: 4%;
+
+    bottom: 10%;
+
+    font-size: clamp(70px, 10vw, 160px);
+
+    color: #ff1744;
+
+    opacity: 0.8;
+
+    font-family: serif;
+
+    z-index: 4;
+
+    text-shadow:
+
+        0 0 15px rgba(255,0,50,0.4),
+
+        0 0 50px rgba(255,0,50,0.2);
+}
+
+
+/* -------------------------
+   BOTTOM SECTION
+------------------------- */
+
+.bottom-section {
+
+    min-height: 35vh;
+
+    padding: 70px 10%;
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+.bottom-title span {
+
+    color: #ff1744;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+}
+
+
+.bottom-title h2 {
+
+    font-family: "Cinzel", serif;
+
+    font-size: 30px;
+
+    letter-spacing: 5px;
+
+    margin-top: 10px;
+}
+
+
+.bottom-section > p {
+
+    max-width: 400px;
+
+    color: #777;
+
+    font-size: 11px;
+
+    line-height: 2;
+}
+
+
+/* -------------------------
+   QUOTE SECTION
+------------------------- */
+
+.quote-section {
+
+    min-height: 70vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 100px 10%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(120,0,30,0.15),
+            transparent 60%
+        );
+}
+
+
+.quote-mark {
+
+    font-family: serif;
+
+    font-size: 100px;
+
+    color: #ff1744;
+
+    height: 80px;
+
+    opacity: 0.5;
+}
+
+
+.quote-section h2 {
+
+    font-family: "Cinzel", serif;
+
+    font-size: clamp(25px, 4vw, 50px);
+
+    line-height: 1.3;
+
+    font-weight: 400;
+
+    margin-bottom: 25px;
+}
+
+
+.quote-section span {
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    color: #ff1744;
+}
+
+
+/* -------------------------
+   CURSOR
+------------------------- */
+
+.cursor-glow {
+
+    position: fixed;
+
+    width: 200px;
+
+    height: 200px;
+
+    pointer-events: none;
+
+    border-radius: 50%;
+
+    background: rgba(255,0,50,0.05);
+
+    filter: blur(30px);
+
+    transform: translate(-50%, -50%);
+
+    z-index: 50;
+}
+
+
+/* -------------------------
+   MOBILE
+------------------------- */
+
+@media (max-width: 700px) {
+
+    nav {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0 25px;
+    }
+
+    .side-counter {
+        display: none;
+    }
+
+    .hero {
+
+        padding: 120px 25px 60px;
+
+        min-height: 100vh;
+    }
+
+    .hero-content {
+
+        width: 100%;
+
+        z-index: 10;
+    }
+
+    .hero-image {
+
+        width: 100%;
+
+        height: 70%;
+
+        right: 0;
+
+        top: 25%;
+
+        opacity: 0.6;
+    }
+
+    .description {
+
+        max-width: 300px;
+    }
+
+    .info-grid {
+
+        gap: 15px;
+    }
+
+    .large-kanji {
+
+        font-size: 90px;
+
+        right: 10px;
+
+        bottom: 15%;
+    }
+
+    .bottom-section {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 30px;
+    }
+
+    .quote-section {
+
+        padding: 80px 25px;
+    }
+}
