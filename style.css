@@ -1083,3 +1083,44 @@ h1 {
         height: 38px;
     }
 }
+
+/* =========================
+   SCENE TEXT TRANSITION
+========================= */
+
+#sceneEyebrow,
+#sceneTitle,
+#sceneDescription,
+#sceneQuote {
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.5s ease;
+
+}
+
+
+#sceneTitle {
+    transform-origin: left center;
+}
+
+
+.scene-controls {
+    animation:
+        controlsAppear 1s ease 2s both;
+}
+
+
+@keyframes controlsAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
