@@ -193,6 +193,17 @@ function changeScene(index) {
     }
 
     currentScene = index;
+const sceneTransition =
+    document.getElementById("sceneTransition");
+
+sceneTransition.classList.remove("active");
+
+/* Restart animation */
+
+void sceneTransition.offsetWidth;
+
+sceneTransition.classList.add("active");
+
 
     const scene = scenes[currentScene];
 
