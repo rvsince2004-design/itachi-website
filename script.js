@@ -154,3 +154,125 @@ sceneButtons.forEach((button) => {
     });
 
 });
+
+/* =========================
+   MOBILE SWIPE CONTROLS
+========================= */
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+const sceneImages = [
+    "images/itachi-main.jpg",
+    "images/itachi-eye.jpg",
+    "images/itachi-dark.jpg"
+];
+
+let currentScene = 0;
+
+
+/* Detect where the swipe starts */
+
+document.addEventListener("touchstart", (event) => {
+
+    touchStartX = event.changedTouches[0].screenX;
+
+});
+
+
+/* Detect where the swipe ends */
+
+document.addEventListener("touchend", (event) => {
+
+    touchEndX = event.changedTouches[0].screenX;
+
+    handleSwipe();
+
+});
+
+
+function handleSwipe() {
+
+    const distance =
+        touchEndX - touchStartX;
+
+
+    /* Ignore tiny movements */
+
+    if (Math.abs(distance) < 50) {
+        return;
+    }
+
+
+    /* Swipe LEFT */
+
+    if (distance < 0) {
+
+        currentScene++;
+
+        if (currentScene >= sceneImages.length) {
+            currentScene = 0;
+        }
+
+    }
+
+
+    /* Swipe RIGHT */
+
+    else {
+
+        currentScene--;
+
+        if (currentScene < 0) {
+            currentScene = sceneImages.length - 1;
+        }
+
+    }
+
+
+    changeScene(currentScene);
+
+}
+
+
+/* Change image */
+
+function changeScene(index) {
+
+    const newImage =
+        sceneImages[index];
+
+
+    itachiImage.style.opacity = "0";
+
+    itachiImage.style.transform =
+        "scale(1.08)";
+
+
+    setTimeout(() => {
+
+        itachiImage.src = newImage;
+
+        itachiImage.onload = () => {
+
+            itachiImage.style.opacity = "1";
+
+            itachiImage.style.transform =
+                "scale(1)";
+        };
+
+    }, 300);
+
+
+    /* Update buttons */
+
+    sceneButtons.forEach((button, i) => {
+
+        button.classList.toggle(
+            "active",
+            i === index
+        );
+
+    });
+
+}
