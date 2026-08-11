@@ -1393,3 +1393,120 @@ h1 {
     }
 
 }
+
+
+/* =========================
+   CINEMATIC SCENE TRANSITION
+========================= */
+
+.scene-transition {
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 0, 45, 0.85),
+            #160006 45%,
+            #020205 100%
+        );
+
+    z-index: 9998;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    transform: scale(1.3);
+}
+
+
+.scene-transition.active {
+    animation: sceneFlash 0.8s ease-in-out;
+}
+
+
+.transition-symbol {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.5);
+
+    color: #fff;
+
+    font-family: serif;
+
+    font-size: 100px;
+
+    text-shadow:
+        0 0 15px #ff1744,
+        0 0 50px #ff1744;
+
+    opacity: 0;
+}
+
+
+.scene-transition.active
+.transition-symbol {
+
+    animation:
+        symbolFlash 0.8s ease-in-out;
+}
+
+
+@keyframes sceneFlash {
+
+    0% {
+        opacity: 0;
+        transform: scale(1.3);
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    65% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+
+@keyframes symbolFlash {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(-50%, -50%)
+            scale(0.5)
+            rotate(-20deg);
+    }
+
+    40% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(1.1)
+            rotate(0deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(-50%, -50%)
+            scale(1.5)
+            rotate(20deg);
+    }
+}
