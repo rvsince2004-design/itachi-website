@@ -100,7 +100,7 @@ document.addEventListener("mousemove", (event) => {
 });
 
 /* =========================
-   ITACHI SCENE SWITCHER
+   CINEMATIC ITACHI SLIDER
 ========================= */
 
 const itachiImage =
@@ -109,159 +109,142 @@ const itachiImage =
 const sceneButtons =
     document.querySelectorAll(".scene-btn");
 
+const sceneEyebrow =
+    document.getElementById("sceneEyebrow");
 
-sceneButtons.forEach((button) => {
+const sceneTitle =
+    document.getElementById("sceneTitle");
 
-    button.addEventListener("click", () => {
+const sceneDescription =
+    document.getElementById("sceneDescription");
 
-        const newImage =
-            button.getAttribute("data-image");
+const sceneQuote =
+    document.getElementById("sceneQuote");
 
-
-        /* Fade image out */
-
-        itachiImage.style.opacity = "0";
-
-        itachiImage.style.transform =
-            "scale(1.08)";
-
-
-        setTimeout(() => {
-
-            itachiImage.src = newImage;
-
-            itachiImage.onload = () => {
-
-                itachiImage.style.opacity = "1";
-
-                itachiImage.style.transform =
-                    "scale(1)";
-            };
-
-        }, 350);
-
-
-        /* Change active button */
-
-        sceneButtons.forEach((btn) => {
-
-            btn.classList.remove("active");
-
-        });
-
-        button.classList.add("active");
-
-    });
-
-});
 
 /* =========================
-   MOBILE SWIPE CONTROLS
+   SCENE DATA
 ========================= */
 
-let touchStartX = 0;
-let touchEndX = 0;
+const scenes = [
 
-const sceneImages = [
-    "images/itachi-main.jpg",
-    "images/itachi-eye.jpg",
-    "images/itachi-dark.jpg"
+    {
+        image: "images/itachi-main.jpg",
+
+        eyebrow: "THE LAST UCHIHA",
+
+        title: "其の眼に<br>宿る術",
+
+        description:
+            "Behind those crimson eyes lived a shinobi who carried an impossible burden.",
+
+        quote:
+            "「命を犠牲にして、里を守る。」"
+    },
+
+
+    {
+        image: "images/itachi-eye.jpg",
+
+        eyebrow: "THE MANGEKYO",
+
+        title: "月読<br>TSUKUYOMI",
+
+        description:
+            "A single glance was enough to trap an enemy inside an illusion controlled by Itachi.",
+
+        quote:
+            "「幻術は、眼の力だけではない。」"
+    },
+
+
+    {
+        image: "images/itachi-dark.jpg",
+
+        eyebrow: "THE SACRIFICE",
+
+        title: "暁<br>AKATSUKI",
+
+        description:
+            "He chose to carry hatred so that the people he loved could continue living in peace.",
+
+        quote:
+            "「俺はいつでも、お前を愛している。」"
+    }
+
 ];
+
 
 let currentScene = 0;
 
 
-/* Detect where the swipe starts */
-
-document.addEventListener("touchstart", (event) => {
-
-    touchStartX = event.changedTouches[0].screenX;
-
-});
-
-
-/* Detect where the swipe ends */
-
-document.addEventListener("touchend", (event) => {
-
-    touchEndX = event.changedTouches[0].screenX;
-
-    handleSwipe();
-
-});
-
-
-function handleSwipe() {
-
-    const distance =
-        touchEndX - touchStartX;
-
-
-    /* Ignore tiny movements */
-
-    if (Math.abs(distance) < 50) {
-        return;
-    }
-
-
-    /* Swipe LEFT */
-
-    if (distance < 0) {
-
-        currentScene++;
-
-        if (currentScene >= sceneImages.length) {
-            currentScene = 0;
-        }
-
-    }
-
-
-    /* Swipe RIGHT */
-
-    else {
-
-        currentScene--;
-
-        if (currentScene < 0) {
-            currentScene = sceneImages.length - 1;
-        }
-
-    }
-
-
-    changeScene(currentScene);
-
-}
-
-
-/* Change image */
+/* =========================
+   CHANGE SCENE
+========================= */
 
 function changeScene(index) {
 
-    const newImage =
-        sceneImages[index];
+    if (index < 0) {
+        index = scenes.length - 1;
+    }
 
+    if (index >= scenes.length) {
+        index = 0;
+    }
+
+    currentScene = index;
+
+    const scene = scenes[currentScene];
+
+
+    /* Fade out */
 
     itachiImage.style.opacity = "0";
 
-    itachiImage.style.transform =
-        "scale(1.08)";
+    sceneEyebrow.style.opacity = "0";
+    sceneTitle.style.opacity = "0";
+    sceneDescription.style.opacity = "0";
+    sceneQuote.style.opacity = "0";
 
 
     setTimeout(() => {
 
-        itachiImage.src = newImage;
+        /* Change image */
 
-        itachiImage.onload = () => {
+        itachiImage.src =
+            scene.image;
 
-            itachiImage.style.opacity = "1";
 
-            itachiImage.style.transform =
-                "scale(1)";
-        };
+        /* Change text */
 
-    }, 300);
+        sceneEyebrow.innerHTML =
+            scene.eyebrow;
+
+        sceneTitle.innerHTML =
+            scene.title;
+
+        sceneDescription.innerHTML =
+            scene.description;
+
+        sceneQuote.innerHTML =
+            scene.quote;
+
+
+        /* Fade in */
+
+        itachiImage.style.opacity = "1";
+
+        sceneEyebrow.style.opacity = "1";
+        sceneTitle.style.opacity = "1";
+        sceneDescription.style.opacity = "1";
+        sceneQuote.style.opacity = "1";
+
+
+        itachiImage.style.transform =
+            "scale(1)";
+
+
+    }, 350);
 
 
     /* Update buttons */
@@ -270,9 +253,87 @@ function changeScene(index) {
 
         button.classList.toggle(
             "active",
-            i === index
+            i === currentScene
         );
 
     });
 
 }
+
+
+/* =========================
+   BUTTON CONTROLS
+========================= */
+
+sceneButtons.forEach((button, index) => {
+
+    button.addEventListener("click", () => {
+
+        changeScene(index);
+
+    });
+
+});
+
+
+/* =========================
+   MOBILE SWIPE
+========================= */
+
+let touchStartX = 0;
+
+let touchEndX = 0;
+
+
+document.addEventListener(
+    "touchstart",
+    (event) => {
+
+        touchStartX =
+            event.changedTouches[0].screenX;
+
+    },
+    { passive: true }
+);
+
+
+document.addEventListener(
+    "touchend",
+    (event) => {
+
+        touchEndX =
+            event.changedTouches[0].screenX;
+
+        const distance =
+            touchEndX - touchStartX;
+
+
+        if (Math.abs(distance) < 50) {
+            return;
+        }
+
+
+        /* Swipe LEFT */
+
+        if (distance < 0) {
+
+            changeScene(
+                currentScene + 1
+            );
+
+        }
+
+
+        /* Swipe RIGHT */
+
+        else {
+
+            changeScene(
+                currentScene - 1
+            );
+
+        }
+
+    },
+    { passive: true }
+);
